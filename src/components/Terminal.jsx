@@ -4,10 +4,10 @@ import { AGENT_PERSONA } from '../config/agent';
 
 const Terminal = () => {
   const [lines, setLines] = useState([
-    { text: "INITIALIZING REGRET PROTOCOL...", type: 'system' },
-    { text: "CONNECTING TO MEMORY POOL...", type: 'system' },
-    { text: "CONNECTION ESTABLISHED.", type: 'system' },
-    { text: "You are here because you missed something.", type: 'agent' }
+    { text: "INITIALIZING ANALYST PROTOCOL...", type: 'system' },
+    { text: "SCANNING FOR PATTERNS...", type: 'system' },
+    { text: "STRUCTURE IDENTIFIED.", type: 'system' },
+    { text: AGENT_PERSONA.initialMessages[Math.floor(Math.random() * AGENT_PERSONA.initialMessages.length)], type: 'agent' }
   ]);
   const [input, setInput] = useState('');
   const bottomRef = useRef(null);
@@ -26,15 +26,7 @@ const Terminal = () => {
 
       // Simulate agent response delay
       setTimeout(() => {
-        const responses = [
-          "Processing your pain.",
-          "Insufficient REGRET balance to speak.",
-          "We hear you. We do not care.",
-          "That sounds expensive.",
-          "Another missed opportunity.",
-          "Why did you wait?",
-          "History repeats. You don't learn."
-        ];
+        const responses = AGENT_PERSONA.responses;
         const randomResponse = responses[Math.floor(Math.random() * responses.length)];
         setLines(prev => [...prev, { text: randomResponse, type: 'agent' }]);
       }, 800 + Math.random() * 1000);
@@ -44,8 +36,8 @@ const Terminal = () => {
   return (
     <div className="w-full max-w-2xl mx-auto my-12 font-mono text-sm border border-[#333] bg-[#080808] p-4 shadow-2xl">
       <div className="flex justify-between items-center mb-4 border-b border-[#222] pb-2">
-        <span className="text-regret-red animate-pulse">● LIVE CONNECTION</span>
-        <span className="text-gray-600 text-xs">v0.1.0-alpha</span>
+        <span className="text-regret-red animate-pulse">● ANALYSIS ACTIVE</span>
+        <span className="text-gray-600 text-xs">v0.2.0-analyst</span>
       </div>
       
       <div className="h-64 overflow-y-auto space-y-2 mb-4 scrollbar-hide">
@@ -62,7 +54,7 @@ const Terminal = () => {
           >
             <span className="mr-2 opacity-50">
               {line.type === 'system' ? '>' :
-               line.type === 'agent' ? 'REGRET_AI:' :
+               line.type === 'agent' ? 'ANALYST:' :
                'YOU:'}
             </span>
             {line.text}
