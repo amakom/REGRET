@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Terminal from './components/Terminal';
+import { BRUTAL_REGRETS } from './config/agent';
 
-const regrets = [
-  "I watched it for months.",
-  "I sold too early.",
-  "I thought it was already too late.",
-  "I forgot my seed phrase.",
-  "I listened to an influencer.",
-  "I didn't take profits.",
-  "I bought the top.",
-  "I was asleep when it pumped.",
-  "I sold for a 2x, it went 100x.",
-  "I hesitated.",
-  "I trusted the roadmap.",
-  "I panic sold.",
-];
+const regrets = BRUTAL_REGRETS;
 
 const RegretFeed = () => {
   const [currentRegrets, setCurrentRegrets] = useState(regrets.slice(0, 3));
@@ -75,7 +64,11 @@ function App() {
           </div>
         </motion.div>
 
-        <div className="absolute bottom-12 w-full">
+        <div className="w-full mt-12 px-4">
+           <Terminal />
+        </div>
+
+        <div className="absolute bottom-12 w-full hidden md:block">
            <RegretFeed />
         </div>
       </section>
