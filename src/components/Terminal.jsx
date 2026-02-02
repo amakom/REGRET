@@ -4,9 +4,9 @@ import { AGENT_PERSONA } from '../config/agent';
 
 const Terminal = () => {
   const [lines, setLines] = useState([
-    { text: "INITIALIZING ANALYST PROTOCOL...", type: 'system' },
-    { text: "SCANNING FOR PATTERNS...", type: 'system' },
-    { text: "STRUCTURE IDENTIFIED.", type: 'system' },
+    { text: "INITIALIZING DOUBT PROTOCOL...", type: 'system' },
+    { text: "CALCULATING RISKS...", type: 'system' },
+    { text: "STILL CALCULATING...", type: 'system' },
     { text: AGENT_PERSONA.initialMessages[Math.floor(Math.random() * AGENT_PERSONA.initialMessages.length)], type: 'agent' }
   ]);
   const [input, setInput] = useState('');
@@ -36,8 +36,8 @@ const Terminal = () => {
   return (
     <div className="w-full max-w-2xl mx-auto my-12 font-mono text-sm border border-[#333] bg-[#080808] p-4 shadow-2xl">
       <div className="flex justify-between items-center mb-4 border-b border-[#222] pb-2">
-        <span className="text-regret-red animate-pulse">● ANALYSIS ACTIVE</span>
-        <span className="text-gray-600 text-xs">v0.2.0-analyst</span>
+        <span className="text-regret-red animate-pulse">● HESITATION DETECTED</span>
+        <span className="text-gray-600 text-xs">v0.3.0-hesitator</span>
       </div>
       
       <div className="h-64 overflow-y-auto space-y-2 mb-4 scrollbar-hide">
@@ -54,7 +54,7 @@ const Terminal = () => {
           >
             <span className="mr-2 opacity-50">
               {line.type === 'system' ? '>' :
-               line.type === 'agent' ? 'ANALYST:' :
+               line.type === 'agent' ? 'HESITATOR:' :
                'YOU:'}
             </span>
             {line.text}
