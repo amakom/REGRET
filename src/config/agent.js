@@ -47,7 +47,8 @@ export const PERSONAS = {
       "I was just about to say something...",
       "Most opportunities die while we're thinking.",
       "I almost entered. I just needed one more confirmation.",
-      "Waiting felt safer. It wasn't."
+      "Waiting felt safer. It wasn't.",
+      "I told myself tomorrow."
     ],
     responses: [
       "I was waiting for confirmation.",
@@ -90,7 +91,8 @@ export const PERSONAS = {
       "It was in your hand. You let it go.",
       "The worst part is you knew.",
       "Close. But zero is still zero.",
-      "You watched the first candle. And the last."
+      "You watched the first candle. And the last.",
+      "It was on my list."
     ]
   },
   COPE: {
@@ -153,7 +155,8 @@ export const PERSONAS = {
       "Their success is not your failure. But it feels like it.",
       "Silence is heavy when shared.",
       "You could have been the one speaking.",
-      "The chart moved. You didn't."
+      "The chart moved. You didn't.",
+      "Others didn't wait."
     ]
   },
   MIRROR: {
@@ -218,7 +221,10 @@ export const PERSONAS = {
       "Cycles grind. You are just dust.",
       "They said 'this time is different' in 2017 too.",
       "I have logs of regrets from the 2018 winter. They look just like yours.",
-      "The leverage flush of '25. Total erasure."
+      "The leverage flush of '25. Total erasure.",
+      "You have been here before.",
+      "This wasn't the first time.",
+      "I remember 2020. The fear was identical."
     ]
   }
 };
