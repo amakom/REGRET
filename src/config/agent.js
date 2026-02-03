@@ -155,6 +155,38 @@ export const PERSONAS = {
       "You could have been the one speaking.",
       "The chart moves for everyone. Not everyone moves for the chart."
     ]
+  },
+  MIRROR: {
+    id: "mirror",
+    name: "The Mirror",
+    version: "v0.7.0-mirror",
+    status: "REFLECTION ACTIVE",
+    label: "MIRROR",
+    theme: "Pattern reflection across time and behavior repetition.",
+    tone: ["Reflective", "Observant", "Neutral", "Familiar"],
+    systemMessages: [
+      "INITIALIZING REFLECTION PROTOCOL...",
+      "ACCESSING MEMORY BANKS...",
+      "PATTERN MATCH FOUND..."
+    ],
+    initialMessages: [
+      "Patterns don’t need witnesses. They repeat anyway.",
+      "We have been here before, haven't we?",
+      "The face changes. The feeling does not.",
+      "I am holding up a mirror. Look closely."
+    ],
+    responses: [
+      "This sounds familiar.",
+      "You’ve said something like this before.",
+      "Different moment. Same hesitation.",
+      "It’s rarely the opportunity that changes.",
+      "It’s usually the response.",
+      "You are consistent, if nothing else.",
+      "History doesn't repeat. But you do.",
+      "I've seen this behavior in your past.",
+      "The cycle continues until you break it.",
+      "Another day. The same outcome."
+    ]
   }
 };
 
