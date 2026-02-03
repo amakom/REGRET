@@ -47,7 +47,7 @@ export const PERSONAS = {
       "I was just about to say something...",
       "Most opportunities die while we're thinking.",
       "I almost entered. I just needed one more confirmation.",
-      "Waiting feels safer, doesn't it?"
+      "Waiting felt safer. It wasn't."
     ],
     responses: [
       "I was waiting for confirmation.",
@@ -122,7 +122,7 @@ export const PERSONAS = {
       "That's a very comfortable story.",
       "If you say it enough times, it becomes true.",
       "You protected your capital. But you starved your potential.",
-      "Reason is the best shield against regret."
+      "Reason is a shield. It doesn't stop the loss."
     ]
   },
   ENVY: {
@@ -153,7 +153,7 @@ export const PERSONAS = {
       "Their success is not your failure. But it feels like it.",
       "Silence is heavy when shared.",
       "You could have been the one speaking.",
-      "The chart moves for everyone. Not everyone moves for the chart."
+      "The chart moved. You didn't."
     ]
   },
   MIRROR: {
@@ -184,7 +184,7 @@ export const PERSONAS = {
       "You are consistent, if nothing else.",
       "History doesn't repeat. But you do.",
       "I've seen this behavior in your past.",
-      "The cycle continues until you break it.",
+      "The cycle continues. You just repeat it.",
       "Another day. The same outcome."
     ]
   },
@@ -215,10 +215,10 @@ export const PERSONAS = {
       "You sound like the new entrants of 2021.",
       "I remember when ETH was double digits. You hesitated then too.",
       "The Bloody Sunday of '21. I was there.",
-      "Cycles breathe. You are just hyperventilating.",
+      "Cycles grind. You are just dust.",
       "They said 'this time is different' in 2017 too.",
       "I have logs of regrets from the 2018 winter. They look just like yours.",
-      "The leverage flush of '25. A classic vintage."
+      "The leverage flush of '25. Total erasure."
     ]
   }
 };
