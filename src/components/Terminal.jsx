@@ -14,7 +14,9 @@ const Terminal = () => {
   const [accessState, setAccessState] = useState('checking'); // checking, granted, denied, limit_reached
   const [messageCount, setMessageCount] = useState(0);
   const [observerCount, setObserverCount] = useState(300);
+  const [regretIndex, setRegretIndex] = useState(50);
   const bottomRef = useRef(null);
+  const startRef = useRef(Date.now());
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,6 +24,21 @@ const Terminal = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const elapsed = (Date.now() - startRef.current) / 1000;
+      const obNorm = Math.min(observerCount / 500, 1);
+      const speakNorm = messageCount > 0 ? 0 : 1;
+      let accessWeight = 0.5;
+      if (accessState === 'denied' || accessState === 'checking') accessWeight = 1;
+      else if (accessState === 'limit_reached') accessWeight = 0.3;
+      const timeNorm = Math.min(elapsed / 60, 1);
+      const value = Math.round((0.25 * timeNorm + 0.25 * speakNorm + 0.25 * obNorm + 0.25 * accessWeight) * 100);
+      setRegretIndex(prev => Math.round(prev * 0.7 + value * 0.3));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [observerCount, accessState, messageCount]);
 
   useEffect(() => {
     // Simulate access control check
@@ -81,7 +98,12 @@ const Terminal = () => {
           <span className="text-regret-red animate-pulse">● {persona.status}</span>
           <span className="text-gray-500">👁 {observerCount} WATCHING</span>
         </div>
-        <span className="text-gray-600 text-xs">{persona.version}</span>
+        <div className="flex items-center gap-4">
+          <span className="text-gray-500">
+            INDEX {regretIndex} {regretIndex >= 70 ? 'HEAVY' : regretIndex >= 40 ? 'UNEASY' : 'CALM'}
+          </span>
+          <span className="text-gray-600 text-xs">{persona.version}</span>
+        </div>
       </div>
 
       {/* Pinned Message */}
