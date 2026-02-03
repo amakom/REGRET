@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { AGENT_PERSONA } from '../config/agent';
+import { getRandomPersona } from '../config/agent';
 
 const Terminal = () => {
+  const [persona] = useState(getRandomPersona());
   const [lines, setLines] = useState([
-    { text: "INITIALIZING NEAR-MISS PROTOCOL...", type: 'system' },
-    { text: "ANALYZING ENTRY POINTS...", type: 'system' },
-    { text: "YOU WERE EARLY. YOU MISSED IT.", type: 'system' },
-    { text: AGENT_PERSONA.initialMessages[Math.floor(Math.random() * AGENT_PERSONA.initialMessages.length)], type: 'agent' }
+    { text: persona.systemMessages[0], type: 'system' },
+    { text: persona.systemMessages[1], type: 'system' },
+    { text: persona.systemMessages[2], type: 'system' },
+    { text: persona.initialMessages[Math.floor(Math.random() * persona.initialMessages.length)], type: 'agent' }
   ]);
   const [input, setInput] = useState('');
   const bottomRef = useRef(null);
@@ -26,7 +27,7 @@ const Terminal = () => {
 
       // Simulate agent response delay
       setTimeout(() => {
-        const responses = AGENT_PERSONA.responses;
+        const responses = persona.responses;
         const randomResponse = responses[Math.floor(Math.random() * responses.length)];
         setLines(prev => [...prev, { text: randomResponse, type: 'agent' }]);
       }, 800 + Math.random() * 1000);
@@ -36,8 +37,8 @@ const Terminal = () => {
   return (
     <div className="w-full max-w-2xl mx-auto my-12 font-mono text-sm border border-[#333] bg-[#080808] p-4 shadow-2xl">
       <div className="flex justify-between items-center mb-4 border-b border-[#222] pb-2">
-        <span className="text-regret-red animate-pulse">● ALMOST EARLY</span>
-        <span className="text-gray-600 text-xs">v0.4.0-almost</span>
+        <span className="text-regret-red animate-pulse">● {persona.status}</span>
+        <span className="text-gray-600 text-xs">{persona.version}</span>
       </div>
       
       <div className="h-64 overflow-y-auto space-y-2 mb-4 scrollbar-hide">
@@ -54,7 +55,7 @@ const Terminal = () => {
           >
             <span className="mr-2 opacity-50">
               {line.type === 'system' ? '>' :
-               line.type === 'agent' ? 'ALMOST:' :
+               line.type === 'agent' ? `${persona.label}:` :
                'YOU:'}
             </span>
             {line.text}
