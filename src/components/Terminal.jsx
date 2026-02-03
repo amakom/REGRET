@@ -11,7 +11,21 @@ const Terminal = () => {
     { text: persona.initialMessages[Math.floor(Math.random() * persona.initialMessages.length)], type: 'agent' }
   ]);
   const [input, setInput] = useState('');
+  const [accessState, setAccessState] = useState('checking'); // checking, granted, denied, limit_reached
+  const [messageCount, setMessageCount] = useState(0);
   const bottomRef = useRef(null);
+
+  useEffect(() => {
+    // Simulate access control check
+    const checkAccess = () => {
+      const random = Math.random();
+      // 80% chance of access for demo purposes, but simulating "selection"
+      setTimeout(() => {
+        setAccessState(random > 0.2 ? 'granted' : 'denied');
+      }, 2000);
+    };
+    checkAccess();
+  }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -19,11 +33,17 @@ const Terminal = () => {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      if (!input.trim()) return;
+      if (!input.trim() || accessState !== 'granted') return;
       
       const userLine = { text: input, type: 'user' };
       setLines(prev => [...prev, userLine]);
       setInput('');
+      setMessageCount(prev => prev + 1);
+
+      // Enforce scarcity: Limit to 1 message per session
+      if (messageCount >= 0) { // 0 means 1st message triggers this
+        setTimeout(() => setAccessState('limit_reached'), 500);
+      }
 
       // Simulate agent response delay
       setTimeout(() => {
@@ -34,14 +54,32 @@ const Terminal = () => {
     }
   };
 
+  const getPlaceholder = () => {
+    switch (accessState) {
+      case 'checking': return 'VERIFYING ELIGIBILITY...';
+      case 'denied': return 'ACCESS DENIED. TRY NEXT CYCLE.';
+      case 'limit_reached': return 'DAILY ALLOWANCE USED. SILENCE IS CHEAPER.';
+      default: return 'Confess your missed opportunity...';
+    }
+  };
+
   return (
-    <div className="w-full max-w-2xl mx-auto my-12 font-mono text-sm border border-[#333] bg-[#080808] p-4 shadow-2xl">
-      <div className="flex justify-between items-center mb-4 border-b border-[#222] pb-2">
+    <div className="w-full max-w-2xl mx-auto my-12 font-mono text-sm border border-[#333] bg-[#080808] p-4 shadow-2xl relative overflow-hidden">
+      {/* Scanline effect */}
+      <div className="absolute inset-0 bg-[url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif')] opacity-[0.02] pointer-events-none" />
+      
+      <div className="flex justify-between items-center mb-2 border-b border-[#222] pb-2 relative z-10">
         <span className="text-regret-red animate-pulse">● {persona.status}</span>
         <span className="text-gray-600 text-xs">{persona.version}</span>
       </div>
+
+      {/* Pinned Message */}
+      <div className="mb-4 p-2 bg-[#111] border-l-2 border-regret-red text-xs text-gray-400 relative z-10">
+        <span className="text-regret-red font-bold mr-2">NOTICE:</span>
+        Speaking is limited. Silence is cheaper than regret.
+      </div>
       
-      <div className="h-64 overflow-y-auto space-y-2 mb-4 scrollbar-hide">
+      <div className="h-64 overflow-y-auto space-y-2 mb-4 scrollbar-hide relative z-10">
         {lines.map((line, i) => (
           <motion.div 
             key={i}
@@ -55,8 +93,8 @@ const Terminal = () => {
           >
             <span className="mr-2 opacity-50">
               {line.type === 'system' ? '>' :
-               line.type === 'agent' ? `${persona.label}:` :
-               'YOU:'}
+              line.type === 'agent' ? `${persona.label}:` :
+              'YOU:'}
             </span>
             {line.text}
           </motion.div>
@@ -64,17 +102,22 @@ const Terminal = () => {
         <div ref={bottomRef} />
       </div>
 
-      <div className="relative">
+      <div className="relative z-10">
         <input 
           type="text" 
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Confess your missed opportunity..."
-          className="w-full bg-[#0a0a0a] border border-[#222] p-2 text-gray-300 focus:outline-none focus:border-regret-red placeholder-gray-700"
+          disabled={accessState !== 'granted'}
+          placeholder={getPlaceholder()}
+          className={`w-full bg-[#0a0a0a] border border-[#222] p-2 focus:outline-none placeholder-gray-700 transition-colors ${
+            accessState === 'granted' 
+              ? 'text-gray-300 focus:border-regret-red cursor-text' 
+              : 'text-gray-600 cursor-not-allowed border-dashed'
+          }`}
         />
         <div className="absolute right-2 top-2 text-xs text-gray-600 pointer-events-none">
-          ⏎ to speak
+          {accessState === 'granted' ? '⏎ to speak' : '🔒 LOCKED'}
         </div>
       </div>
     </div>
