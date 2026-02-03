@@ -70,11 +70,11 @@ const Terminal = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Enter message (Cost: 100 REGRET)..."
+          placeholder="Confess your missed opportunity..."
           className="w-full bg-[#0a0a0a] border border-[#222] p-2 text-gray-300 focus:outline-none focus:border-regret-red placeholder-gray-700"
         />
         <div className="absolute right-2 top-2 text-xs text-gray-600 pointer-events-none">
-          ⏎ to burn
+          ⏎ to speak
         </div>
       </div>
     </div>

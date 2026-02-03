@@ -1,38 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Terminal from './components/Terminal';
 import { BRUTAL_REGRETS } from './config/agent';
 
 const regrets = BRUTAL_REGRETS;
 
-const RegretFeed = () => {
-  const [currentRegrets, setCurrentRegrets] = useState(regrets.slice(0, 3));
+const WhisperingRegrets = () => {
+  const [whispers, setWhispers] = useState([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const randomRegret = regrets[Math.floor(Math.random() * regrets.length)];
-      setCurrentRegrets(prev => [randomRegret, ...prev.slice(0, 2)]);
-    }, 3000);
+      const id = Date.now();
+      const text = regrets[Math.floor(Math.random() * regrets.length)];
+      const x = Math.floor(Math.random() * 80) + 10; // 10% to 90%
+      const y = Math.floor(Math.random() * 80) + 10; // 10% to 90%
+      
+      setWhispers(prev => [...prev, { id, text, x, y }]);
+
+      setTimeout(() => {
+        setWhispers(prev => prev.filter(w => w.id !== id));
+      }, 4000);
+    }, 1500);
+
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="w-full max-w-md mx-auto my-12 border-l-2 border-regret-red pl-4 py-2">
-      <h3 className="text-regret-red text-sm uppercase mb-4 tracking-widest">Live Regret Feed</h3>
-      <div className="flex flex-col gap-3">
-        {currentRegrets.map((regret, index) => (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+      <AnimatePresence>
+        {whispers.map(whisper => (
           <motion.div
-            key={`${regret}-${index}`}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
+            key={whisper.id}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: [0, 0.4, 0], scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-gray-400 italic font-mono text-sm"
+            transition={{ duration: 4, times: [0, 0.2, 1] }}
+            style={{ 
+              position: 'absolute', 
+              left: `${whisper.x}%`, 
+              top: `${whisper.y}%` 
+            }}
+            className="text-gray-500 font-mono text-xs md:text-sm italic tracking-widest blur-[0.5px]"
           >
-            "{regret}"
+            {whisper.text}
           </motion.div>
         ))}
-      </div>
+      </AnimatePresence>
     </div>
   );
 };
@@ -41,6 +54,8 @@ function App() {
   return (
     <div className="min-h-screen bg-[#050505] text-[#e5e5e5] font-mono selection:bg-regret-red selection:text-black overflow-x-hidden">
       
+      <WhisperingRegrets />
+
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center items-center px-4 relative">
         <motion.div 
@@ -67,12 +82,8 @@ function App() {
           </div>
         </motion.div>
 
-        <div id="terminal-section" className="w-full mt-12 px-4">
+        <div id="terminal-section" className="w-full mt-12 px-4 z-10 relative">
            <Terminal />
-        </div>
-
-        <div className="absolute bottom-12 w-full hidden md:block">
-           <RegretFeed />
         </div>
       </section>
 
