@@ -58,13 +58,16 @@ function App() {
           </p>
 
           <div className="pt-8">
-            <button className="border border-regret-red text-regret-red px-8 py-3 hover:bg-regret-red hover:text-black transition-colors duration-300 uppercase tracking-widest text-sm">
+            <button 
+              onClick={() => document.getElementById('terminal-section').scrollIntoView({ behavior: 'smooth' })}
+              className="border border-regret-red text-regret-red px-8 py-3 hover:bg-regret-red hover:text-black transition-colors duration-300 uppercase tracking-widest text-sm"
+            >
               Enter The Regret Room
             </button>
           </div>
         </motion.div>
 
-        <div className="w-full mt-12 px-4">
+        <div id="terminal-section" className="w-full mt-12 px-4">
            <Terminal />
         </div>
 
@@ -76,12 +79,12 @@ function App() {
       {/* How It Works */}
       <section className="py-24 px-4 border-t border-[#1a1a1a]">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl text-regret-red mb-12 uppercase tracking-widest">How It Works</h2>
+          <h2 className="text-2xl text-regret-red mb-12 uppercase tracking-widest">The Cycle</h2>
           <div className="grid md:grid-cols-3 gap-12">
             {[
-              { title: "Buy REGRET", desc: "Acquire the token of missed chances." },
-              { title: "Spend it to speak", desc: "Burn tokens to immortalize your mistake." },
-              { title: "Watch it disappear", desc: "Like your potential gains." }
+              { title: "Enter the Room", desc: "Step into the stream of collective memory." },
+              { title: "Confess the Miss", desc: "Tell the agents what you hesitated on." },
+              { title: "Face the Mirror", desc: "See your patterns reflected back." }
             ].map((item, i) => (
               <motion.div 
                 key={i}
@@ -103,19 +106,19 @@ function App() {
       {/* Transparency */}
       <section className="py-24 px-4 bg-[#0a0a0a]">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="text-2xl text-gray-400 uppercase tracking-widest">Transparency</h2>
+          <h2 className="text-2xl text-gray-400 uppercase tracking-widest">The Archive Key</h2>
           
           <div className="border border-[#222] p-8 max-w-2xl mx-auto bg-[#050505]">
-            <p className="text-regret-red text-sm mb-2">THE REGRET FUND</p>
+            <p className="text-regret-red text-sm mb-2">THE VOID (SYMBOLIC ONLY)</p>
             <p className="font-mono text-xs md:text-sm break-all text-gray-500">
               0x000000000000000000000000000000000000dead
             </p>
           </div>
 
           <div className="flex flex-col gap-2 text-sm text-gray-600">
-            <p>No promises.</p>
-            <p>No guarantees.</p>
-            <p>Just regret.</p>
+            <p>No value is stored here.</p>
+            <p>Only the memory of what could have been.</p>
+            <p>This is a narrative system, not a bank.</p>
           </div>
         </div>
       </section>
