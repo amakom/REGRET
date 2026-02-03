@@ -98,12 +98,7 @@ const Terminal = () => {
           <span className="text-regret-red animate-pulse">● {persona.status}</span>
           <span className="text-gray-500">👁 {observerCount} WATCHING</span>
         </div>
-        <div className="flex items-center gap-4">
-          <span className="text-gray-500">
-            INDEX {regretIndex} {regretIndex >= 70 ? 'HEAVY' : regretIndex >= 40 ? 'UNEASY' : 'CALM'}
-          </span>
-          <span className="text-gray-600 text-xs">{persona.version}</span>
-        </div>
+        <span className="text-gray-600 text-xs">{persona.version}</span>
       </div>
 
       {/* Pinned Message */}
@@ -167,6 +162,12 @@ const Terminal = () => {
             </div>
           </>
         )}
+      </div>
+
+      <div className="mt-2 text-right relative z-10">
+        <span className="text-gray-600 text-xs">
+          REGRET INDEX: {regretIndex} <span className={regretIndex >= 70 ? 'text-regret-red' : 'text-gray-500'}>[{regretIndex >= 70 ? 'HEAVY' : regretIndex >= 40 ? 'UNEASY' : 'CALM'}]</span>
+        </span>
       </div>
     </div>
   );
