@@ -117,7 +117,7 @@ const Terminal = () => {
         {accessState === 'limit_reached' ? (
           <button 
             onClick={() => {
-              const text = `REGRET TERMINAL SESSION\nSTATUS: CONFESSED\n\n> ${lines.find(l => l.type === 'user')?.text || 'Silence'}\n\nSilence is cheaper than regret.`;
+              const text = `REGRET TERMINAL SESSION\nSTATUS: CONFESSED\n\n> ${lines.find(l => l.type === 'user')?.text || 'Silence'}\n\nSilence is cheaper than regret.\n${window.location.href}`;
               navigator.clipboard.writeText(text);
               alert('RECORD COPIED TO CLIPBOARD');
             }}

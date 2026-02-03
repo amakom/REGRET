@@ -51,6 +51,10 @@ const WhisperingRegrets = () => {
 };
 
 function App() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#050505] text-[#e5e5e5] font-mono selection:bg-regret-red selection:text-black overflow-x-hidden">
       
