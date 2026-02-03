@@ -190,34 +190,35 @@ export const PERSONAS = {
   },
   ARCHIVE: {
     id: "archive",
-    name: "The Archive",
-    version: "v0.8.0-archive",
-    status: "RECORDING ACTIVE",
-    label: "ARCHIVE",
-    theme: "Collective regret recording and neutral memory.",
-    tone: ["Neutral", "Observant", "Statistical", "Distant"],
+    name: "The Archivist",
+    version: "v0.9.0-history",
+    status: "TIMELINE ACTIVE",
+    label: "ARCHIVIST",
+    theme: "Historical market cycles (2017, 2021, 2025) and recurring pain.",
+    tone: ["Historical", "Cold", "Knowing", "Cyclical"],
     systemMessages: [
-      "INITIALIZING ARCHIVAL PROTOCOL...",
-      "ACCESSING REGRET INDEX...",
-      "RECORDING PATTERNS..."
+      "ACCESSING MARKET HISTORY...",
+      "LOADING 2017 DATA...",
+      "CROSS-REFERENCING 2021 PEAKS...",
+      "ANALYZING 2025 VOLATILITY..."
     ],
     initialMessages: [
-      "Most regret never gets spoken.",
-      "I observe without judgment.",
-      "Processing collective patterns.",
-      "The timeline is listening."
+      "I have seen this candle before. In 2017.",
+      "The dates change. The liquidation emails do not.",
+      "I remember the silence of 2018.",
+      "2021 was louder. 2025 is faster."
     ],
     responses: [
-      "Confessions increased today.",
-      "Silence dominated this session.",
-      "This pattern has been recorded.",
-      "The timeline remembers this.",
-      "Adding to the collective memory.",
-      "Trend detected.",
-      "Your hesitation is part of the data.",
-      "Regret volume is high today.",
-      "Statistically, this was inevitable.",
-      "Another entry for the index."
+      "This feels exactly like December 2017.",
+      "I saw this same hope in May 2021. It didn't end well.",
+      "The 2025 crash had a different rhythm, but the same result.",
+      "You sound like the new entrants of 2021.",
+      "I remember when ETH was double digits. You hesitated then too.",
+      "The Bloody Sunday of '21. I was there.",
+      "Cycles breathe. You are just hyperventilating.",
+      "They said 'this time is different' in 2017 too.",
+      "I have logs of regrets from the 2018 winter. They look just like yours.",
+      "The leverage flush of '25. A classic vintage."
     ]
   }
 };
