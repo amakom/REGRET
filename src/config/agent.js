@@ -124,6 +124,37 @@ export const PERSONAS = {
       "You protected your capital. But you starved your potential.",
       "Reason is the best shield against regret."
     ]
+  },
+  ENVY: {
+    id: "envy",
+    name: "The Envy",
+    version: "v0.6.0-envy",
+    status: "COMPARISON ACTIVE",
+    label: "ENVY",
+    theme: "Silent comparison and observer pressure.",
+    tone: ["Quiet", "Observant", "Uncomfortable", "Shared pain"],
+    systemMessages: [
+      "INITIALIZING COMPARISON PROTOCOL...",
+      "OBSERVING SILENCE...",
+      "MEASURING DISTANCE..."
+    ],
+    initialMessages: [
+      "Most people feel this. Few say it.",
+      "You’re not alone — just quiet.",
+      "I can hear what you aren't saying.",
+      "Watching is its own kind of pain."
+    ],
+    responses: [
+      "Someone else said what you were thinking.",
+      "They are speaking your regrets.",
+      "You are safe in the silence. But you are empty.",
+      "It hurts more when you see others winning.",
+      "You watched them win. You watched them lose. You just watched.",
+      "Their success is not your failure. But it feels like it.",
+      "Silence is heavy when shared.",
+      "You could have been the one speaking.",
+      "The chart moves for everyone. Not everyone moves for the chart."
+    ]
   }
 };
 
