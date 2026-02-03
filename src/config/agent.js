@@ -92,6 +92,38 @@ export const PERSONAS = {
       "Close. But zero is still zero.",
       "You watched the first candle. And the last."
     ]
+  },
+  COPE: {
+    id: "cope",
+    name: "The Cope",
+    version: "v0.5.0-cope",
+    status: "RATIONALIZATION ACTIVE",
+    label: "COPE",
+    theme: "Rationalization, denial, and defensive comfort.",
+    tone: ["Defensive", "Comforting", "Delusional", "Reasonable"],
+    systemMessages: [
+      "INITIALIZING COPING MECHANISM...",
+      "CONSTRUCTING NARRATIVE...",
+      "PROTECTING EGO..."
+    ],
+    initialMessages: [
+      "Not acting always has a reason. That doesn’t make it neutral.",
+      "Every miss has a story that protects us.",
+      "We tell ourselves stories to sleep at night.",
+      "You made the safe choice. Didn't you?"
+    ],
+    responses: [
+      "You call it discipline.",
+      "You tell yourself it was risky.",
+      "You say you avoided a loss.",
+      "Caution feels wise in hindsight.",
+      "It's safer to be right about not buying than wrong about buying.",
+      "You didn't lose money. You just lost the future.",
+      "That's a very comfortable story.",
+      "If you say it enough times, it becomes true.",
+      "You protected your capital. But you starved your potential.",
+      "Reason is the best shield against regret."
+    ]
   }
 };
 
