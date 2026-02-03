@@ -187,6 +187,38 @@ export const PERSONAS = {
       "The cycle continues until you break it.",
       "Another day. The same outcome."
     ]
+  },
+  ARCHIVE: {
+    id: "archive",
+    name: "The Archive",
+    version: "v0.8.0-archive",
+    status: "RECORDING ACTIVE",
+    label: "ARCHIVE",
+    theme: "Collective regret recording and neutral memory.",
+    tone: ["Neutral", "Observant", "Statistical", "Distant"],
+    systemMessages: [
+      "INITIALIZING ARCHIVAL PROTOCOL...",
+      "ACCESSING REGRET INDEX...",
+      "RECORDING PATTERNS..."
+    ],
+    initialMessages: [
+      "Most regret never gets spoken.",
+      "I observe without judgment.",
+      "Processing collective patterns.",
+      "The timeline is listening."
+    ],
+    responses: [
+      "Confessions increased today.",
+      "Silence dominated this session.",
+      "This pattern has been recorded.",
+      "The timeline remembers this.",
+      "Adding to the collective memory.",
+      "Trend detected.",
+      "Your hesitation is part of the data.",
+      "Regret volume is high today.",
+      "Statistically, this was inevitable.",
+      "Another entry for the index."
+    ]
   }
 };
 
