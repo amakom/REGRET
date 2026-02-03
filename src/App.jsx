@@ -57,86 +57,84 @@ function App() {
       <WhisperingRegrets />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center items-center px-4 relative">
+      <section className="min-h-screen flex flex-col justify-center items-center px-4 relative z-10">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, ease: "linear" }}
           className="max-w-4xl w-full text-center space-y-8"
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight text-gray-200">
+          <h1 className="text-4xl md:text-7xl font-bold tracking-tighter leading-tight text-gray-200">
             All the opportunities you missed since you joined crypto.
           </h1>
           
-          <p className="text-regret-text text-lg md:text-xl max-w-2xl mx-auto">
-            REGRET is where they finally get talked about.
+          <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto tracking-wide">
+            REGRET is a live space where missed chances are talked about — not fixed.
           </p>
 
-          <div className="pt-8">
+          <div className="pt-12">
             <button 
-              onClick={() => document.getElementById('terminal-section').scrollIntoView({ behavior: 'smooth' })}
-              className="border border-regret-red text-regret-red px-8 py-3 hover:bg-regret-red hover:text-black transition-colors duration-300 uppercase tracking-widest text-sm"
+              onClick={() => document.getElementById('regret-room').scrollIntoView({ behavior: 'smooth' })}
+              className="border border-regret-red text-regret-red px-10 py-4 hover:bg-regret-red hover:text-black transition-colors duration-300 uppercase tracking-widest text-sm font-bold"
             >
               Enter The Regret Room
             </button>
           </div>
         </motion.div>
+      </section>
 
-        <div id="terminal-section" className="w-full mt-12 px-4 z-10 relative">
-           <Terminal />
+      {/* Second Section: Stacked Statements */}
+      <section className="py-32 px-4 bg-[#080808] border-t border-[#1a1a1a]">
+        <div className="max-w-4xl mx-auto flex flex-col items-center space-y-12">
+          {["You watched.", "You waited.", "You hesitated."].map((text, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.3, duration: 0.8 }}
+              className="text-3xl md:text-5xl font-bold text-gray-400 tracking-tighter uppercase"
+            >
+              {text}
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-24 px-4 border-t border-[#1a1a1a]">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl text-regret-red mb-12 uppercase tracking-widest">The Cycle</h2>
-          <div className="grid md:grid-cols-3 gap-12">
-            {[
-              { title: "Enter the Room", desc: "Step into the stream of collective memory." },
-              { title: "Confess the Miss", desc: "Tell the agents what you hesitated on." },
-              { title: "Face the Mirror", desc: "See your patterns reflected back." }
-            ].map((item, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2, duration: 0.8 }}
-                className="space-y-4"
-              >
-                <div className="text-regret-red text-4xl font-bold">0{i + 1}</div>
-                <h3 className="text-xl font-bold">{item.title}</h3>
-                <p className="text-gray-500 text-sm">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+      {/* Third Section: Explanation */}
+      <section className="py-32 px-4 border-t border-[#1a1a1a]">
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="text-xl md:text-2xl text-gray-300 leading-relaxed font-light">
+            REGRET is a public room where people talk about missed crypto opportunities while others remain silent.
+          </p>
         </div>
       </section>
 
-      {/* Transparency */}
-      <section className="py-24 px-4 bg-[#0a0a0a]">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="text-2xl text-gray-400 uppercase tracking-widest">The Archive Key</h2>
-          
-          <div className="border border-[#222] p-8 max-w-2xl mx-auto bg-[#050505]">
-            <p className="text-regret-red text-sm mb-2">THE VOID (SYMBOLIC ONLY)</p>
-            <p className="font-mono text-xs md:text-sm break-all text-gray-500">
-              0x000000000000000000000000000000000000dead
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-2 text-sm text-gray-600">
-            <p>No value is stored here.</p>
-            <p>Only the memory of what could have been.</p>
-            <p>This is a narrative system, not a bank.</p>
-          </div>
+      {/* Fourth Section: Quote */}
+      <section className="py-32 px-4 bg-[#080808] border-t border-[#1a1a1a]">
+        <div className="max-w-4xl mx-auto text-center">
+          <blockquote className="text-2xl md:text-4xl font-bold text-regret-red italic tracking-widest">
+            "Silence is cheaper than regret."
+          </blockquote>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 text-center border-t border-[#1a1a1a]">
-        <p className="text-gray-600 text-sm">Most people miss quietly.</p>
+      {/* The Regret Room (Terminal) */}
+      <section id="regret-room" className="py-24 px-4 min-h-screen flex flex-col justify-center border-t border-[#1a1a1a]">
+        <div className="max-w-4xl mx-auto w-full">
+          <div className="text-center mb-12">
+            <h2 className="text-regret-red text-sm uppercase tracking-[0.3em] mb-4">Live Feed</h2>
+            <div className="w-1 h-12 bg-regret-red mx-auto opacity-50"></div>
+          </div>
+          <Terminal />
+        </div>
+      </section>
+
+      {/* Final Section: Disclaimer */}
+      <footer className="py-24 px-4 border-t border-[#1a1a1a] text-center">
+        <p className="text-gray-600 text-xs md:text-sm tracking-widest uppercase">
+          REGRET is not financial advice. No promises. No redemption.
+        </p>
       </footer>
     </div>
   )
