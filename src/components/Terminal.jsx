@@ -13,7 +13,15 @@ const Terminal = () => {
   const [input, setInput] = useState('');
   const [accessState, setAccessState] = useState('checking'); // checking, granted, denied, limit_reached
   const [messageCount, setMessageCount] = useState(0);
+  const [observerCount, setObserverCount] = useState(300);
   const bottomRef = useRef(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setObserverCount(prev => prev + Math.floor(Math.random() * 5) - 2);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     // Simulate access control check
@@ -69,7 +77,10 @@ const Terminal = () => {
       <div className="absolute inset-0 bg-[url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif')] opacity-[0.02] pointer-events-none" />
       
       <div className="flex justify-between items-center mb-2 border-b border-[#222] pb-2 relative z-10">
-        <span className="text-regret-red animate-pulse">● {persona.status}</span>
+        <div className="flex gap-4">
+          <span className="text-regret-red animate-pulse">● {persona.status}</span>
+          <span className="text-gray-500">👁 {observerCount} WATCHING</span>
+        </div>
         <span className="text-gray-600 text-xs">{persona.version}</span>
       </div>
 
@@ -103,22 +114,37 @@ const Terminal = () => {
       </div>
 
       <div className="relative z-10">
-        <input 
-          type="text" 
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          disabled={accessState !== 'granted'}
-          placeholder={getPlaceholder()}
-          className={`w-full bg-[#0a0a0a] border border-[#222] p-2 focus:outline-none placeholder-gray-700 transition-colors ${
-            accessState === 'granted' 
-              ? 'text-gray-300 focus:border-regret-red cursor-text' 
-              : 'text-gray-600 cursor-not-allowed border-dashed'
-          }`}
-        />
-        <div className="absolute right-2 top-2 text-xs text-gray-600 pointer-events-none">
-          {accessState === 'granted' ? '⏎ to speak' : '🔒 LOCKED'}
-        </div>
+        {accessState === 'limit_reached' ? (
+          <button 
+            onClick={() => {
+              const text = `REGRET TERMINAL SESSION\nSTATUS: CONFESSED\n\n> ${lines.find(l => l.type === 'user')?.text || 'Silence'}\n\nSilence is cheaper than regret.`;
+              navigator.clipboard.writeText(text);
+              alert('RECORD COPIED TO CLIPBOARD');
+            }}
+            className="w-full bg-[#111] border border-regret-red text-regret-red p-2 font-bold hover:bg-regret-red hover:text-black transition-colors"
+          >
+            COPY RECORD
+          </button>
+        ) : (
+          <>
+            <input 
+              type="text" 
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              disabled={accessState !== 'granted'}
+              placeholder={getPlaceholder()}
+              className={`w-full bg-[#0a0a0a] border border-[#222] p-2 focus:outline-none placeholder-gray-700 transition-colors ${
+                accessState === 'granted' 
+                  ? 'text-gray-300 focus:border-regret-red cursor-text' 
+                  : 'text-gray-600 cursor-not-allowed border-dashed'
+              }`}
+            />
+            <div className="absolute right-2 top-2 text-xs text-gray-600 pointer-events-none">
+              {accessState === 'granted' ? '⏎ to speak' : '🔒 LOCKED'}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
