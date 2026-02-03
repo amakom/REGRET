@@ -60,6 +60,13 @@ function App() {
       
       <WhisperingRegrets />
 
+      {/* Brutalist Logo */}
+      <nav className="fixed top-6 left-6 z-50 mix-blend-difference">
+        <h1 className="font-bold tracking-widest text-xl md:text-2xl text-gray-200">
+          REGRET<span className="text-regret-red">.</span>
+        </h1>
+      </nav>
+
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center items-center px-4 relative z-10">
         <motion.div 
